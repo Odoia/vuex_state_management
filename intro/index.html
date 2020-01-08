@@ -7,7 +7,23 @@
   </head>
   <body>
     <div id="app">
-      {{ count }}
+      <h1> {{ countBy2 }} </h1>
+
+      <h3>Todo List</h3>
+
+      <ul>
+        <li v-for="todo in doneTodos">
+          {{ todo.task }}
+        </li>
+      </ul>
+
+      <p><b>number of done tasks:</b> {{ doneTodosCounter }}</p>
+
+      <p>task id 2: {{ getTodoById2 }} </p>
+
+      <button @click="increment"> Increment click</button>
+
+      <h1>{{ counter }} </h1>
     </div>
 
     <script src="index.js"></script>
