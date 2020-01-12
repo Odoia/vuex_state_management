@@ -21,7 +21,9 @@
 
       <p>task id 2: {{ getTodoById2 }} </p>
 
-      <button @click="increment"> Increment click</button>
+      <input type="text" v-model="number" />
+
+      <button @click="increment(number)"> Increment counter</button>
 
       <h1>{{ counter }} </h1>
     </div>

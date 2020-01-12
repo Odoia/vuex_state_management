@@ -11,8 +11,18 @@ const store = new Vuex.Store({
   },
 
   mutations: {
-    incrementCount (state) {
-      state.count += 1
+    incrementCount (state, num) {
+      state.count += num
+    },
+
+    setCount (state, num) {
+      state.count = num
+    }
+  },
+
+  actions: {
+    increment (context, value) {
+      context.commit('incrementCount', value)
     }
   },
 
@@ -31,6 +41,12 @@ const store = new Vuex.Store({
 new Vue({
   el: "#app",
   store,
+
+  date: function () {
+    return {
+      number: ''
+    }
+  },
 
   computed: {
     counter() {
@@ -55,8 +71,8 @@ new Vue({
   },
 
   methods: {
-    increment: function () {
-      this.$store.commit('incrementCount');
+    increment: function (value) {
+      this.$store.dispatch('increment', Number(value));
     }
   }
 
