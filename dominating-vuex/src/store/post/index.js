@@ -40,7 +40,6 @@ const postModule = {
           dispatch('getBody', json.body)
           dispatch('getUserId', json.UserId)
         })
-        // .catch(error => console.log(error))
     },
 
     getTitle ({ commit }, title) {

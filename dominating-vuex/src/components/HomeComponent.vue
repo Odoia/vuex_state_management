@@ -9,6 +9,12 @@
               :firstText="upperTitle"
               :secondText="truncatedBody"
             >
+            <extraData>>
+              <v-form>
+                <v-text-field :value="title" @input="updateTitle" />
+                <v-text-field v-model="body" />
+              </v-form>
+            </extraData>
 
             </Card>
           </div>
@@ -22,6 +28,12 @@
             
               <extraData>
                 <v-btn @click="getUser">get user data </v-btn>
+              </extraData>
+
+              <extraData>
+                <p>{{ street }}</p>
+                <p>{{ suite }}</p>
+                <p>{{city}}</p>
               </extraData>
 
               <extraData>
@@ -48,7 +60,7 @@ export default {
   
   computed: {
     ...mapState('postModule', [
-      'body'
+      'title'
     ]),
 
     ...mapGetters('postModule', [
@@ -62,7 +74,21 @@ export default {
 
     ...mapGetters('userModule', {
       userName: 'upperName'
-    })
+    }),
+
+    ...mapState('userModule/address', [
+      'street', 'suite', 'city'
+    ]),
+
+    body: {
+      get () {
+        return this.$store.state.postModule.body
+      },
+
+      set (value) {
+        this.$store.commit('postModule/setBody', value)
+      }
+    }
   },
 
   created () {
@@ -76,7 +102,11 @@ export default {
 
     ...mapActions('userModule', {
       getUser: 'getData'
-    })
+    }),
+
+    updateTitle: function (e) {
+      this.$store.commit('postModule/setTitle', e)
+    }
   }
 }
 </script>
